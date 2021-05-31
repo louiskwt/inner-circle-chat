@@ -1,9 +1,18 @@
 import React from 'react';
-import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
+import {
+	GoogleOutlined,
+	FacebookOutlined,
+	CommentOutlined
+} from '@ant-design/icons';
 import firebase from 'firebase/app';
 import { auth } from '../firebase';
 
 const Login = () => {
+	const handleDemo = () => {
+		const email = 'demo@gmail.com';
+		const password = 'demo123';
+		firebase.auth().signInWithEmailAndPassword(email, password);
+	};
 	return (
 		<div id='login-page'>
 			<div id='login-card'>
@@ -29,6 +38,11 @@ const Login = () => {
 					}
 				>
 					<FacebookOutlined /> Signed In with Facebook
+				</div>
+				<br />
+				<br />
+				<div className='login-button demo' onClick={handleDemo}>
+					<CommentOutlined /> Try it now
 				</div>
 			</div>
 		</div>
