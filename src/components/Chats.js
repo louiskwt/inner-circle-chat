@@ -8,15 +8,11 @@ import axios from 'axios';
 
 const Chats = () => {
 	const history = useHistory();
-	const { user, setUser } = useAuth();
+	const { user } = useAuth();
 	const [loading, setLoading] = useState(true);
 
 	const handleLogout = async () => {
-		setUser(null);
-		await auth.signOut();
-		console.log('logging out');
-		history.push('/');
-		return;
+		return await auth.signOut();
 	};
 
 	const getFile = async (url) => {
@@ -81,7 +77,7 @@ const Chats = () => {
 
 	if (!user || loading) return 'Loading...';
 
-	if (user !== null && !loading) {
+	if (user && !loading) {
 		return (
 			<div className='chats-page'>
 				<div className='nav-bar'>

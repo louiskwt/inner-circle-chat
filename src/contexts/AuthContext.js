@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		let isSub = true;
-		if (isSub && user !== {}) {
+		if (isSub && !user) {
 			auth.onAuthStateChanged((user) => {
 				console.log('firebase run');
 				setUser(user);
@@ -25,7 +25,9 @@ export const AuthProvider = ({ children }) => {
 			});
 		}
 
-		return () => (isSub = false);
+		return () => {
+			isSub = false;
+		};
 	}, [user, history]);
 
 	const value = { user, setUser };
